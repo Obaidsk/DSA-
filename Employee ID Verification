@@ -1,0 +1,39 @@
+ #include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Enter number of employees: ";
+    cin >> n;
+
+    // Use a vector-sized array (VLA is non-standard). 
+    // For strict standard C++, prefer dynamic allocation: new int[n];
+    int* emp = new int[n];
+
+    cout << "Enter employee IDs:\n";
+    for (int i = 0; i < n; i++) cin >> emp[i];
+
+    int target;
+    cout << "Enter Employee ID to verify: ";
+    cin >> target;
+
+    int found = -1;                 // -1 means not found
+    for (int i = 0; i < n; i++) {   // linear search O(n)
+        if (emp[i] == target) {
+            found = i;
+            break;                  // stop at first match
+        }
+    }
+
+    if (found != -1)
+        cout << "Employee ID found at index: " << found << endl;
+    else
+        cout << "Employee ID not found." << endl;
+
+    delete[] emp;                   // free memory
+    return 0;
+}
+
+  
+  
+      
